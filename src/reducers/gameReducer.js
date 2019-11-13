@@ -4,7 +4,8 @@ const {SET_PLAYER_CHOICE, RESTART_GAME} = gameActionTypes;
 
 const INITIAL_STATE = {
     table: [...Array(7)].map(e => Array(6).fill('0')),
-    currentPlayerTurn: '1'
+    currentPlayerTurn: '1',
+    plays: 0
 };
 
 export default(state = INITIAL_STATE, action) => {

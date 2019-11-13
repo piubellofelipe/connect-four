@@ -39,7 +39,7 @@ class Game extends React.Component {
                     {
                         this.props.table.map((column, x) => (
                             <div className='column-wrapper' onClick={() => this.setPlayerChoice(x)}>
-                                <div className='arrow-down' />
+                                <div className='arrow-down' style={{borderTopColor: this.getColor(this.props.currentPlayerTurn)}} />
                                 {
                                     column.map((square, y) => (
                                         <div className='box' style={{backgroundColor: this.getColor(square)}} key={x + '' + y} />
@@ -51,16 +51,21 @@ class Game extends React.Component {
                 </div>
                 <PlayerTurn playerName={this.getPlayerName(this.props.currentPlayerTurn)} playerColor={this.getColor(this.props.currentPlayerTurn)} />
             </div>
-
-        <button onClick={this.restartGame}>Play again</button>
-        <Modal
-                isOpen={this.props.winner}
-                onRequestClose={this.restartGame}
-                style={modalStyle}
-                contentLabel="Congratulations">
-            <h2 ref={subtitle => this.subtitle = subtitle}>{this.getPlayerName(this.props.winner)} has won!</h2>
             <button onClick={this.restartGame}>Play again</button>
-        </Modal>
+            <Modal isOpen={this.props.winner}
+                    onRequestClose={this.restartGame}
+                    style={modalStyle}
+                    contentLabel="Congratulations">
+                <h2>{this.getPlayerName(this.props.winner)} has won!</h2>
+                <button onClick={this.restartGame}>Play again</button>
+            </Modal>
+            <Modal isOpen={this.props.plays === 42 && !this.props.winner}
+                    onRequestClose={this.restartGame}
+                    style={modalStyle}
+                    contentLabel="Draw!">
+                <h2>Oooh... Seems that no one has won!</h2>
+                <button onClick={this.restartGame}>Play again</button>
+            </Modal>
         </>
         );
     }
