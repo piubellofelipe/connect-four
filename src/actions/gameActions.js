@@ -1,6 +1,6 @@
 import {gameActionTypes} from './types';
 
-const { SET_PLAYER_CHOICE } = gameActionTypes;
+const { SET_PLAYER_CHOICE, RESTART_GAME } = gameActionTypes;
 
 const setPlayerChoice = (columnIndex) => async (dispatch, getState) => {
     const currentPlayerTurn = getState().gameReducer.currentPlayerTurn
@@ -13,6 +13,11 @@ const setPlayerChoice = (columnIndex) => async (dispatch, getState) => {
     dispatch({type: SET_PLAYER_CHOICE, payload: {x: columnIndex, y: availableColPosition, currentPlayerTurn}})
 }
 
+const restartGame = () => dispatch => {
+    dispatch({type: RESTART_GAME})
+}
+
 export default {
-    setPlayerChoice
+    setPlayerChoice,
+    restartGame
 };

@@ -1,6 +1,6 @@
 import {gameActionTypes} from '../actions/types';
 import {checkWin} from '../utils'
-const {SET_PLAYER_CHOICE} = gameActionTypes;
+const {SET_PLAYER_CHOICE, RESTART_GAME} = gameActionTypes;
 
 const INITIAL_STATE = {
     table: [...Array(7)].map(e => Array(6).fill('0')),
@@ -18,8 +18,12 @@ export default(state = INITIAL_STATE, action) => {
             ...state,
             currentPlayerTurn: currentPlayerTurn === '1' ? '2' : '1',
             winner: isAWin ? currentPlayerTurn : '',
-            table: newTable
+            table: newTable,
+            plays: state.plays + 1
         };
+    }
+    case RESTART_GAME: {
+        return {...INITIAL_STATE}
     }
     default:
         return state;
