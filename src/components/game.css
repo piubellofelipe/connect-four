@@ -1,0 +1,21 @@
+.game-wrapper {
+    border-radius: 12px;
+    background-color: #007fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 600px;
+}
+.column-wrapper {
+    padding: 8px;
+    flex-direction: column;
+    display: flex;
+}
+.box {
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    min-width: 50px;
+    min-height: 50px;
+    margin: 8px;
+}
